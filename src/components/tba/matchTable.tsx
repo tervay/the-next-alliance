@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/table';
 import { EventMatch } from '@/lib/TBATypes';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
 
 async function MobileMatchRow(props: { match: EventMatch }) {
@@ -117,8 +118,10 @@ async function DesktopMatchRow(props: { match: EventMatch }) {
           <TableCell />
         )}
         <TableCell className="w-fit">
-          {match.comp_level.toUpperCase()}
-          {match.set_number}-{match.match_number}
+          <Link href={`/match/${match.key}`}>
+            {match.comp_level.toUpperCase()}
+            {match.set_number}-{match.match_number}
+          </Link>
         </TableCell>
         {match.alliances.red.team_keys.map((key) => (
           <TableCell className={redCellClasses} key={key}>
